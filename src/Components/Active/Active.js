@@ -15,7 +15,7 @@ const Active = ({ object, date, symbol, direction, link }) => {
                             <article className="cf">
                                 <div className="fl w-100 w-50-ns bg-near-white tl">
                                     <h1 className="f5 lh-title fw9 mb0 mt0 pt3 bt bw2">
-                                    { direction[i] + ' ' + symbol[i].slice(-10,-4) }
+                                    <a href={link[i]}> {direction[i] + ' ' + symbol[i].slice(-10,-4)} </a>
                                     </h1>
                                 </div>
                                 <div className="fl w-100 w-50-ns bg-light-gray tr">
@@ -27,11 +27,8 @@ const Active = ({ object, date, symbol, direction, link }) => {
 
 
                             <div className="mb0 pa1">
-                                <img className="mw-60" src={object[i].image} />
+                                <a href={link[i]}><img className="mw-60" src={object[i].image} /></a>
                             </div>
-
-
-
 
 
 
