@@ -16,12 +16,13 @@ class App extends React.Component {
       symbol: [],
       status: [],
       direction: [],
-      link: [],
-      tradesActive: false
+      link: []
     };
 
-    //keeping list of objects for active forecasts outside of state
-    this.activeObject = {};
+    //keeping an array of objects for active forecasts outside of state, to avoid unnecesary calls to backend
+    this.activeObject = []
+
+
   };
   
 
@@ -46,14 +47,23 @@ class App extends React.Component {
       
       //only proceed if there are active links
       if (activeLinks.length !== 0){
-        this.setState({tradesActive: true});
+        if (activeLinks[0] !== undefined){
 
-        //fetching data for each active forecast
-        activeLinks.map(link => {
+          //fetching data for each active forecast
+          activeLinks.map(link => {
+  
+            this.activeFetch(link.slice(18))    //slicing to avoid https bla bla and pluggin into helper function
 
-          this.updateActiveObject(link.slice(18))    //slicing to avoid https bla bla
 
-        })
+
+
+            this.test();
+  
+          })
+
+
+        }
+
 
       }
     }
@@ -67,13 +77,11 @@ class App extends React.Component {
 
     
   
-  
   iterate() {                            //the iterate thats run every period
 
     this.getBigJson();
 
   };
-
 
 
   //Fetching initial big Json and updating state
@@ -102,28 +110,54 @@ class App extends React.Component {
   //helper function that returns a list of links for active forecasts..
 
   getActiveTradeUrls () {
-    let activeLinkArray = [];
+    const activeLinkArray = [];
+    
+
     (this.state.status).map((entry, i) =>{
       if (entry === 'Market') {
-        const url = (this.state.link[i])
+        // const url = (this.state.link[i])
+        activeLinkArray.push(this.state.link[i])
+        // this.activeObject.date.push(this.state.date[i])
+        // this.activeObject.direction.push(this.state.direction[i]) 
+        // activeLinkArray.push(url);
 
       }
     })
+
     return activeLinkArray;
+
   }
+
+
 
 
   //helper function that fetches information for active forecast and return object
 
-  updateActiveObject = async (url_url) => {
+  activeFetch = async (url_url) => {
 
       const response = await fetch(`/active/${url_url}`);
       
       const data = await response.json();
+
+
+      
       this.activeObject.push(data)
+      // this.commentsHTML.push(data.comments)
+      // console.log(data);
 
   }
 
+
+  stringToHTML (str) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, 'text/html');
+    return doc.body;
+};
+
+
+  test () {
+    console.log('function passed!')
+  }
 
   //helper functions for 'getBigJson'.. breaking down big json into lists and allocating them to state
 

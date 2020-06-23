@@ -6,7 +6,7 @@ from string import Template
 
 app = Flask(__name__)
 
-url_template = Template("""https://fxssi.com/${url_url}""")
+url_template = Template("https://fxssi.com/${urlUrl}") 
 
 
 
@@ -18,11 +18,11 @@ def get_big_json():
 
     return json;
 
-# @app.route('/active')
+# @app.route('/active/euraud-daily-forecast-for-22-jun-2020')
 # def get_active_json():
 
 #     scraper = activeDetailsObject()
-#     activeObject = scraper.activeDictCreate('https://fxssi.com/eurjpy-daily-forecast-for-18-jun-2020')
+#     activeObject = scraper.activeDictCreate('https://fxssi.com/euraud-daily-forecast-for-22-jun-2020')
     
 #     return activeObject;
 
@@ -31,6 +31,10 @@ def get_big_json():
 def get_active_json(url_url):
 
     scraper = activeDetailsObject()
-    activeObject = scraper.activeDictCreate("""https://fxssi.com/${url_url}""")
+    # activeObject = scraper.activeDictCreate("""https://fxssi.com/${url_url}""")
+
+
+
+    activeObject = scraper.activeDictCreate(url_template.substitute(urlUrl=url_url))
     
     return activeObject;

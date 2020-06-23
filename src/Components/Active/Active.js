@@ -1,12 +1,13 @@
 import React from 'react'
 // import './Active.css';
 
-const Active = ({ object, date, symbol, status, direction, link }) => {
+
+const Active = ({ object, date, symbol, direction, link }) => {
     return(
         <div>
         {
-            status.map((each, i) => 
-                status[i] !== 'Market' ? console.log(link[i]) :
+            object.map((each, i) => 
+
                 <article className="cf ph5-n pv mw-100 center bg-white br3 pa3 pa4-ns mv ba b--black-10 ">
                     <div className="tl">
                         <header className="fn fl-ns w-50-ns pr4-ns">
@@ -26,7 +27,7 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
 
 
                             <div className="mb0 pa1">
-                                <img className="mw-60" src={object.image} />
+                                <img className="mw-60" src={object[i].image} />
                             </div>
 
 
@@ -49,7 +50,7 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
                                         <h1 class="f6 bg-near-black white mv0 pv2 ph3">Entry</h1>
                                         <div class="pa0 bt">
                                             <p class="f6 f5-ns lh-copy measure mv0">
-                                            {object.entry}
+                                            {object[i].entry}
                                             </p>
                                         </div>
                                     </article>
@@ -60,7 +61,7 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
                                         <h1 class="f6 bg-near-black white mv0 pv2 ph3">Stoploss</h1>
                                         <div class="pa0 bt">
                                             <p class="f6 f5-ns lh-copy measure mv0">
-                                            {object.stoploss}
+                                            {object[i].stoploss}
                                             </p>
                                         </div>
                                     </article>
@@ -72,7 +73,7 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
                                         <h1 class="f6 bg-near-black white mv0 pv2 ph3">Target 1</h1>
                                         <div class="pa0 bt">
                                             <p class="f6 f5-ns lh-copy measure mv0">
-                                            {object.target1}
+                                            {object[i].target1}
                                             </p>
                                         </div>
                                     </article>
@@ -83,7 +84,7 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
                                         <h1 class="f6 bg-near-black white mv0 pv2 ph3">Target 2</h1>
                                         <div class="pa0 bt">
                                             <p class="f6 f5-ns lh-copy measure mv0">
-                                            {object.target2}
+                                            {object[i].target2}
                                             </p>
                                         </div>
                                     </article>
@@ -93,38 +94,24 @@ const Active = ({ object, date, symbol, status, direction, link }) => {
 
 
 
-                            {/* <div className="cf">
-                                <div className="fl w-50 w-25-ns tc pv2 bg-black-05">
-                                    {object.entry}
-                                </div>
-                                <div className="fl w-50 w-25-ns tc pv2 bg-black-10">
-                                    {object.stoploss}
-                                </div>
-                                <div className="fl w-100 w-25-ns tc pv2 bg-black-20">
-                                    {object.target1}
-                                </div>
-                                <div className="fl w-50 w-25-ns tc pv2 bg-black-10">
-                                    {object.target2}
-                                </div>
-
-                            </div> */}
-                            
+                            {<div dangerouslySetInnerHTML={{__html: object[i].comments}} />}
 
 
 
 
-                            <ol className="comments">
+
+                            {/* <ol className="comments">
                             <li><span>According to the most brokers’ <a href="https://fxssi.com/fxssi-current-ratio-mt4"><a href="https://fxssi.com/fxssi-current-ratio-mt4">data</a></a>, more than half of the traders are currently in short positions on EURJPY. As a result, we recommend considering only Long trades at this time.</span></li>
                             <li><span>The last downward movement was characterized by a “surge” in retail sellers. This is a good reason to start thinking about long positions.</span></li>
                             <li><span>When the price decreases, a signal is formed <a href="https://fxssi.com/fxssi-profit-ratio-mt4"><a href="https://fxssi.com/fxssi-profit-ratio-mt4">(orange labels)</a></a>, which implies an upward movement.</span></li>
                             <li><span>In the <a href="https://fxssi.com/fxssi-order-book-mt4"><a href="https://fxssi.com/fxssi-order-book-mt4">left orderbook</a></a>, we see a cluster of <a href="https://fxssi.com/fxssi-order-book-mt4"><a href="https://fxssi.com/fxssi-order-book-mt4"><a href="https://fxssi.com/fxssi-order-book-mt4"><a href="https://fxssi.com/fxssi-order-book-mt4">stop losses</a></a></a></a> and stop orders right at the level of the previous peak. This is a good level for placing take profit according to our forecast.</span></li>
-                            </ol>
+                            </ol> */}
 
 
                             <div class="bg-black-90 w-100">
                                 <h3 class="white sans-serif fw1 tracked">Progress</h3>
                                 <div class="bg-moon-gray br-pill h1 overflow-y-hidden mb0">
-                                    <div class="bg-green br-pill h1 shadow-1 progress-bar" style={{width:object.progress}}></div>
+                                    <div class="bg-green br-pill h1 shadow-1 progress-bar" style={{width:object[i].progress}}></div>
                                 </div>
 
                             </div>

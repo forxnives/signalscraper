@@ -11,7 +11,7 @@ const Table = ({ date, symbol, status, direction, link }) => {
     return(
         <div className="pa4">
         <div className="overflow-auto">
-            <table className="f6 w-100 mw8 center" cellspacing="0">
+            <table className="f6 w-100 mw8 center" cellSpacing="0">
             <thead>
                 <tr>
                 <th className="fw6 bb b--black-20 tl pb3 pr3 bg-white">Symbol</th>
@@ -27,7 +27,7 @@ const Table = ({ date, symbol, status, direction, link }) => {
                 
                 
                 status.map((each, i) => 
-                    status[i] === 'Market' ? console.log(link[i]) : 
+                    status[i] === 'Market' ? null : 
 
                         <tr>
                         <td className="pv3 pr3 bb b--black-20"><a href={link[i]}>{symbol[i].slice(-10,-4)}</a></td>
