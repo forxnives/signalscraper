@@ -2,10 +2,11 @@ import React from 'react'
 // import './Active.css';
 
 
-const Active = ({ object, date, symbol, direction, link }) => {
+const Active = ({ createNotification, object, date, symbol, direction, link }) => {
     return(
         <div>
         {
+
             object.map((each, i) => 
 
                 <article className="cf ph5-n pv mw-100 center bg-white br3 pa3 pa4-ns mv ba b--black-10 ">
@@ -116,6 +117,7 @@ const Active = ({ object, date, symbol, direction, link }) => {
                     </div>
                 </article>
         )}
+
         </div>
 
 

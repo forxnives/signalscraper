@@ -5,6 +5,10 @@ import Nav from './Components/Nav/Nav'
 import Active from './Components/Active/Active'
 import Table from './Components/Table/Table'
 
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
+
 
 
 class App extends React.Component {
@@ -37,7 +41,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {                                     //component is updating after mount
 
-    //checking if state has changed
+    //checking if state has changed (if orders scraped has changed)
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {    
 
       //getting list of links for active forecasts
@@ -82,6 +86,40 @@ class App extends React.Component {
     this.getBigJson();
 
   };
+
+// creating class for notification 
+
+
+  createNotification = (type) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Title here');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error message', 'Click me!', 5000, () => {
+            alert('callback');
+          });
+          break;
+      }
+    };
+  };
+
+
+
+
+
+
+
+
+
+
 
 
   //Fetching initial big Json and updating state
@@ -218,11 +256,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div onLoad={this.createNotification('success')} className="App">
         <Nav />
-        <Active object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link } />
+        <Active createNotification={this.createNotification('yap')} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link } />
         <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  />
-        <h1>{this.state.date}</h1>
+        <button className='btn btn-success'
+          onClick={this.createNotification('success')}>Success
+        </button>
+        <NotificationContainer/>
       </div>
     );
   };
