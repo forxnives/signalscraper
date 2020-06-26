@@ -6,6 +6,8 @@ import Active from './Components/Active/Active'
 import Table from './Components/Table/Table'
 import { Notifications } from 'react-push-notification';
 import addNotification from 'react-push-notification';
+import emailjs from 'emailjs-com';
+
 
 
 
@@ -30,10 +32,15 @@ class App extends React.Component {
     // keeping an 'update tracker' array outside of state. first value is a boolean that changes on update, and the second is the previous boolean
   
 
-    this.updateTracker = [false, false]          //we change the first value in componentDidUpdate, and send push notification only if values are different.
+    this.updateTracker = {
+      tracker1: false,
+      tracker2: false,
+      activeinit: 0
+    }          //we change the first value in componentDidUpdate, and send push notification only if values are different.
                                                     //we change the previous to match the present after sending notification
   };
   
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   componentDidMount() {                                                        //component has mounted after initial state
@@ -52,6 +59,8 @@ class App extends React.Component {
 
       //getting list of links for active forecasts
       let activeLinks = this.getActiveTradeUrls()
+      this.updateTracker.activeinit++
+      // console.log(this.updateTracker.activeinit)
 
       // let activeLinks = ['https://fxssi.com/eurjpy-daily-forecast-for-18-jun-2020', 'https://fxssi.com/audusd-daily-forecast-for-17-jun-2020']     //test 
       
@@ -66,7 +75,7 @@ class App extends React.Component {
 
             //since we have updated active forecasts, we want to indicate a change in the update tracker:
 
-            this.updateTracker[0] = true;
+            this.updateTracker.tracker1 === false ? this.updateTracker.tracker1 = true : this.updateTracker.tracker1 = false;
 
           })
         }
@@ -87,34 +96,74 @@ class App extends React.Component {
 
   };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // Notification function to be called onLoad of app div, only if active forecasts have changed:
 
-    notificationPush () {
 
-      //checking if update tracker has indicated a change
+  // updateUser function to be called onLoad of app div, only if active forecasts have changed:
 
-      if (this.updateTracker[0] !== this.updateTracker[1]){
+  updateUser () {
 
-        //adding notification function from imported library
+    //checking if update tracker has indicated a change
 
-        addNotification({
-          title: 'Active forecasts have changed!',
-          subtitle: 'Take action!',
-          message: 'Go to the site for details',
-          theme: 'darkblue',
-          native: true // when using native, your OS will handle theming.
-      });
-        
-        this.updateTracker[1] = this.updateTracker[0];
+    if (this.updateTracker.tracker1 !== this.updateTracker.tracker2){
 
-      }
+      //only running if initialized (componentDidRun runs 5 times before initializtion is complete)
 
+      if (this.updateTracker.activeinit > 5){
+        console.log('urkay')
+
+        //send Email
+        this.sendEmail();
+        //push notification
+        this.pushNotify();
+        //making both trackers the same
+        this.updateTracker.tracker2 = this.updateTracker.tracker1;
+      } 
+    }
   };
+
+  // Send Email helper function used in updateUser
+
+  sendEmail() {
+
+    //setting up email template parameters
+
+    const templateParams = {
+      to_name:'Duzi',
+      image: this.activeObject[this.activeObject.length -1].image,
+      entry: this.activeObject[this.activeObject.length -1].entry,
+      stop_loss: this.activeObject[this.activeObject.length -1].stoploss,
+      target: this.activeObject[this.activeObject.length -1].target1
+    }
+
+    //sending the email
+
+    emailjs.send('gmail', 'template_2YgRZVhR', templateParams, 'user_hq8Fp0UIo0ZxpAwj8BEg5')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
+}
+
+  //send notification helper function used in updateUser
+
+  pushNotify() {
+
+    addNotification({                                                  //running imported notification function
+        title: 'Active forecasts have changed!',
+        subtitle: 'Take action!',
+        message: 'Go to the site for details',
+        theme: 'darkblue',
+        native: true // when using native, your OS will handle theming.
+
+    });
+  }
 
 
   //Fetching initial big Json and updating state
-
 
   getBigJson = async () => {
     const response = await fetch('/all');
@@ -136,7 +185,7 @@ class App extends React.Component {
   };
 
   
-  //helper function that returns a list of links for active forecasts..
+  //helper function used in componentDidUpdate that returns a list of links for active forecasts..
 
   getActiveTradeUrls () {
     const activeLinkArray = [];
@@ -147,7 +196,6 @@ class App extends React.Component {
 
         activeLinkArray.push(this.state.link[i])
 
-
       }
     })
 
@@ -156,9 +204,7 @@ class App extends React.Component {
   }
 
 
-
-
-  //helper function that fetches information for active forecasts and return object
+  //helper function used in componentDidUpdate that fetches information for active forecasts and pushes object to this.activeObject
 
   activeFetch = async (url_url) => {
 
@@ -231,17 +277,19 @@ class App extends React.Component {
     return links;
   }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //render function
 
   render() {
     return (
       <div className="App">
+
         <Notifications />
         <Nav />
-        <Active onLoad={this.notificationPush()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link } />
+        <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link } />
         <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  />
-        <h1>{this.state.date}</h1>
+
+
       </div>
     );
   };
