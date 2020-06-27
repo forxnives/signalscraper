@@ -10,7 +10,6 @@ import emailjs from 'emailjs-com';
 
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +39,7 @@ class App extends React.Component {
                                                     //we change the previous to match the present after sending notification
   };
   
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   componentDidMount() {                                                        //component has mounted after initial state
@@ -51,7 +50,6 @@ class App extends React.Component {
   };
 
 
-
   componentDidUpdate(prevProps, prevState) {                                     //component is updating after mount
 
     //checking if state has changed
@@ -59,10 +57,9 @@ class App extends React.Component {
 
       //getting list of links for active forecasts
       let activeLinks = this.getActiveTradeUrls()
-      this.updateTracker.activeinit++
-      // console.log(this.updateTracker.activeinit)
 
-      // let activeLinks = ['https://fxssi.com/eurjpy-daily-forecast-for-18-jun-2020', 'https://fxssi.com/audusd-daily-forecast-for-17-jun-2020']     //test 
+      //counting activeIni...page is initialized after 5 iterations
+      this.updateTracker.activeinit++
       
       //only proceed if there are active links
       if (activeLinks.length !== 0){
@@ -83,22 +80,16 @@ class App extends React.Component {
     }
   }
 
-
   componentWillUnmount() {                       //clearing timer on unmount
     clearInterval(this.timerID);
   }
-
     
   
   iterate() {                            //the iterate thats run every period
-
     this.getBigJson();
-
   };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
   // updateUser function to be called onLoad of app div, only if active forecasts have changed:
 
@@ -113,10 +104,10 @@ class App extends React.Component {
       if (this.updateTracker.activeinit > 5){
         console.log('urkay')
 
-        //send Email
         this.sendEmail();
-        //push notification
+
         this.pushNotify();
+        
         //making both trackers the same
         this.updateTracker.tracker2 = this.updateTracker.tracker1;
       } 
@@ -145,14 +136,13 @@ class App extends React.Component {
       }, (error) => {
           console.log(error.text);
       });
-
 }
 
   //send notification helper function used in updateUser
 
   pushNotify() {
 
-    addNotification({                                                  //running imported notification function
+    addNotification({                                                  
         title: 'Active forecasts have changed!',
         subtitle: 'Take action!',
         message: 'Go to the site for details',
@@ -200,9 +190,7 @@ class App extends React.Component {
     })
 
     return activeLinkArray;
-
   }
-
 
   //helper function used in componentDidUpdate that fetches information for active forecasts and pushes object to this.activeObject
 
@@ -277,7 +265,7 @@ class App extends React.Component {
     return links;
   }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //render function
 
   render() {
@@ -286,15 +274,14 @@ class App extends React.Component {
 
         <Notifications />
         <Nav />
-        <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link } />
+        <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } 
+          direction={ this.state.direction } link={ this.state.link } />
         <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  />
 
 
       </div>
     );
   };
-
-
 };
 
 export default App;
