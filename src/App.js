@@ -41,14 +41,12 @@ class App extends React.Component {
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
   componentDidMount() {                                                        //component has mounted after initial state
 
   //Setting up timer and calling iterate every period
 
     this.timerID = setInterval(() => this.iterate(), 6000);
   };
-
 
   componentDidUpdate(prevProps, prevState) {                                     //component is updating after mount
 
@@ -67,13 +65,10 @@ class App extends React.Component {
 
           //fetching data for each active forecast
           activeLinks.map(link => {
-  
-            this.activeFetch(link.slice(18))    //slicing to crop out 'http://fxssi/ and plugging into helper function that fetches active forecasts
+              this.activeFetch(link.slice(18))    //slicing to crop out 'http://fxssi/ and plugging into helper function that fetches active forecasts
 
             //since we have updated active forecasts, we want to indicate a change in the update tracker:
-
             this.updateTracker.tracker1 === false ? this.updateTracker.tracker1 = true : this.updateTracker.tracker1 = false;
-
           })
         }
       }
@@ -84,7 +79,7 @@ class App extends React.Component {
     clearInterval(this.timerID);
   }
     
-  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   iterate() {                            //the iterate thats run every period
     this.getBigJson();
   };
@@ -100,12 +95,9 @@ class App extends React.Component {
     if (this.updateTracker.tracker1 !== this.updateTracker.tracker2){
 
       //only running if initialized (componentDidRun runs 5 times before initializtion is complete)
-
       if (this.updateTracker.activeinit > 5){
         console.log('urkay')
-
         this.sendEmail();
-
         this.pushNotify();
         
         //making both trackers the same
@@ -115,11 +107,9 @@ class App extends React.Component {
   };
 
   // Send Email helper function used in updateUser
-
   sendEmail() {
 
     //setting up email template parameters
-
     const templateParams = {
       to_name:'Duzi',
       image: this.activeObject[this.activeObject.length -1].image,
@@ -152,7 +142,6 @@ class App extends React.Component {
     });
   }
 
-
   //Fetching initial big Json and updating state
 
   getBigJson = async () => {
@@ -160,12 +149,12 @@ class App extends React.Component {
     const data = await response.json();
 
 
-    const dateArray = this.dateList(data);
-    const symbolArray = this.symbolList(data);
-    const statusArray = this.statusList(data);
-    const directionArray = this.directionList(data);
-    const linkArray = this.linkList(data);
-
+    const dateArray = this.arrayBuild(data, 'date');
+    const symbolArray = this.arrayBuild(data, 'symbol');
+    const statusArray = this.arrayBuild(data, 'status');
+    const directionArray = this.arrayBuild(data, 'direction');
+    const linkArray = this.arrayBuild(data, 'symbol', true);
+    
 
     this.setState({date: dateArray });
     this.setState({symbol: symbolArray });
@@ -183,9 +172,7 @@ class App extends React.Component {
 
     (this.state.status).map((entry, i) =>{
       if (entry === 'Market') {
-
         activeLinkArray.push(this.state.link[i])
-
       }
     })
 
@@ -212,58 +199,24 @@ class App extends React.Component {
 
 };
 
-  //helper functions for 'getBigJson'.. breaking down big json into lists and allocating them to state
+  //helper function for 'getBigJson'.. helps in breaking down big json into arrays
 
-  dateList (data) {
+  arrayBuild (data, key='symbol', extractingLinks=false){
     let i;
-    let dates = []
-    for (i in data){
-      dates.push(data[i].date)
-    }
-    return dates;
+    let array = [];
+    if (extractingLinks) {
+      for (i in data){
+        array.push(data[i][key].slice(9, -12))
+      }
 
+    }else{
+      for (i in data){
+        array.push(data[i][key])
+      }
+    }
+    return array;
   }
 
-  symbolList (data) {
-    let i;
-    let symbols = []
-    for (i in data){
-      symbols.push(data[i].symbol)
-    }
-
-    return symbols;
-  }
-
-
-  statusList (data) {
-    let i;
-    let statuses = []
-    for (i in data){
-      statuses.push(data[i].status)
-    }
-
-    return statuses;
-
-  }
-
-  directionList (data) {
-    let i;
-    let directions = []
-    for (i in data){
-      directions.push(data[i].direction)
-    }
-    return directions;
-
-  }
-
-  linkList (data) {
-    let i;
-    let links = []
-    for (i in data){
-      links.push(data[i].symbol.slice(9, -12))
-    }
-    return links;
-  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //render function
