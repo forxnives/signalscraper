@@ -1,13 +1,250 @@
-body {
+/* COLOURS:
+
+#FFC038
+#F0D960
+#5A9959
+#24846C
+#0E2C32
+*/
+
+/* Using everything selector to make margin and padding default to zero */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+body {
+  /* always put font information in the body element */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: black;
+  padding: 30px;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to top,#24846cc2,#5a99592b), url(../src/img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+/* clip path can take a slice out of something at the following coordinates: */
+/* polygon takes 6 values, representing three coordinates (x y, x y, x y) */
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%)
+}
+
+.logo-box {
+  position: absolute;
+  top: 17px;
+  left: 20px;
+}
+
+.logonotext {
+  height: 80px;
+}
+
+.logonotext:hover {
+  animation: logoEnlarge .2s;
+
+  /* this animation property makes it stop on the lat frame instead of restarting */
+  animation-fill-mode: forwards;
+}
+
+.text-box {
+  position: absolute;
+  /* making position absolute makes the following (top, left) in relation to the parent element */
+  top: 10%;
+  left: 10%;
+  /* we can use transform translate to then transform the item in relation to itself */
+  /* transform: translate(-0%, 10%); */
+
+  
+  
+  /* remember that when using text, we can simply do this to center it */
+  /* text-align: center; */
+
+}
+
+.heading-primary { 
+  color: #08171b;
+  text-transform: uppercase;
+
+  /* this gets rid of animation shakiness! noone knows why.  put in parent element of animation elemtent */
+  backface-visibility: hidden;
+  margin-bottom: 150px;
+}
+
+.heading-primary-main{
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 15px;
+  margin-bottom: 30px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  /* animation-delay: 3s; */
+  /* animation-iteration-count: 3; */
+}
+
+.heading-primary-sub{
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 15px;
+
+  /* Note that you can group all the same animation stuff in one property */
+  animation: moveInRight 1s ease-out
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+
+/* the :link and :visited refer to the pseudoclass of .btn, reffering to its state (eg. hover) */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;  
+
+  /* always make inline-block if adding padding to elements */
+  display: inline-block;  
+
+  /* this rounds the button */
+  border-radius: 100px;
+
+  /* a simpler way to animate; specify what we want to animate (all) and the seconds */
+  
+  transition: all .2s;
+  /* keep in mind that its put on the initial state/pseudoclass! */
+
+
+  /* here we are making a relative position for the absolute in the after pseudoclass to refer to */
+  position: relative;
+
+
+
+
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  /* creating a shadow on hover..takes three values, x, y and colour (including opacity) */
+  box-shadow: 0 10px 20px rgba(0,0,0,.2)  
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  /* decreasing the shadow for onclick  */
+  box-shadow: 0 5px 10px rgba(0,0,0,.2)  
+}
+
+
+.btn-white {
+  background-color: #FFC038;
+  color: #0E2C32;
+}
+
+/* we are going to use the after pseudoclass for the button animation..not double :: */
+.btn::after {
+
+  /* all after pseudoclasses require a content propery, can be empty: */
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* this puts the after pseudoclass behind the button */
+  z-index:-1;
+
+
+  /* the transition here refers to all changes that are made from this state */
+  transition: all .3s ;
+  
+}
+
+.btn-white::after {
+  background-color: #FFC038;
+  ;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+
+  /* here we are using animation short hand and specifying a delay of .5s */
+  animation: moveInBottom 1.8s ease-out .5s;
+
+  /* because of the delay, we have to use animation-fill-mode to set initial state to transparent; */
+  animation-fill-mode: backwards;
+
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes logoEnlarge {
+  0% {
+    transform: scale(1)
+  }
+
+  100% {
+    transform: scale(1.05)
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  80% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
 }
