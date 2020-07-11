@@ -227,12 +227,12 @@ class App extends React.Component {
 
         <Notifications />
         <Nav />
-        <div className="text-box">
+        <div className="header__text-box">
           <h1 className='heading-primary'>
-            <span className="heading-primary-main">Illume Signals</span>
-            <span className="heading-primary-sub">Lighting The Path to Financial Freedom</span>
+            <span className="heading-primary--main">Illume Signals</span>
+            <span className="heading-primary--sub">Lighting The Path to Financial Freedom</span>
           </h1>
-          <a href="#" className="btn btn-white btn-animated">Find Out More</a>
+          <a href="#" className="btn btn--white btn--animated">Find Out More</a>
         </div>
         {/* <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } 
           direction={ this.state.direction } link={ this.state.link } />
