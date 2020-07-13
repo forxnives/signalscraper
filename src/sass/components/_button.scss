@@ -93,3 +93,29 @@
     }
 
 }
+
+
+.btn-text {
+    
+
+    /* the :link and :visited refer to the pseudoclass of .btn, reffering to its state (eg. hover) */
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-green;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-green;
+        padding: 3px;
+
+    }
+
+    &:hover{
+
+    }
+
+    &:active{
+
+    }
+
+}

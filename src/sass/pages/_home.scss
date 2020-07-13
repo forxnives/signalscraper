@@ -1,0 +1,37 @@
+.section-about {
+    background-color: $color-grey-light-1;
+    padding: 32rem 0;
+    margin-top: -30.5vh;
+
+    &-flex-container {
+        // background-color: #ccc;
+        // justify-content: space-around;
+        display: flex;
+        // padding: 10px;
+
+
+    }
+
+    &-col {
+
+        flex: 1;
+        // padding: 30px;
+        // margin: 30px;
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+// .section-about-text {
+//     display: block;
+//     background-color: black;
+// }

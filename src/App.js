@@ -223,23 +223,65 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="header">
+      <div>
 
         <Notifications />
-        <Nav />
-        <div className="header__text-box">
-          <h1 className='heading-primary'>
-            <span className="heading-primary--main">Illume Signals</span>
-            <span className="heading-primary--sub">Lighting The Path to Financial Freedom</span>
-          </h1>
-          <a href="#" className="btn btn--white btn--animated">Find Out More</a>
-        </div>
+        <header className="header">
+          <Nav />
+          <div className="header__text-box">
+            <h1 className='heading-primary'>
+              <span className="heading-primary--main">Illume Signals</span>
+              <span className="heading-primary--sub">Lighting The Path to Financial Freedom</span>
+            </h1>
+            <a href="#" className="btn btn--white btn--animated">Find Out More</a>
+          </div>
+        </header>
+
+        <main>
+          <section className="section-about">
+            <div className="u-center-text u-margin-bottom-big">
+              <h2 className="heading-secondary">
+                  Sentiment-driven analysis
+              </h2>
+            </div>
+
+            <div className="section-about-flex-container">
+              <div className="section-about-col ">
+                <h3 className="heading-tertiary u-margin-bottom-small">
+                  Gain valuable insight into market dynamics
+                </h3>
+                <p className="paragraph">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem doloremque adipisci veritatis soluta ipsum nesciunt assumenda voluptatibus voluptates pariatur eveniet itaque sint perferendis fugiat architecto possimus, magni libero consequatur facilis.
+                </p>
+                <h3 className="heading-tertiary u-margin-bottom-small">
+                  Trade against the herd
+                </h3>
+                <p className="paragraph">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus repellendus sequi consequatur dolorum nam tempore non laboriosam veritatis quod ea, alias magni facilis exercitationem vero voluptatem similique numquam repellat beatae.
+                </p>
+
+                <a href="#" className="btn-text">Learn More &rarr;</a>
+
+              </div>
+                
+              <div className="section-about-col">
+                images
+              </div>
+            </div>
+
+          </section>
+        </main>
+
+
+        
         {/* <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } 
           direction={ this.state.direction } link={ this.state.link } />
         <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  /> */}
 
 
       </div>
+      
+      
     );
   };
 };

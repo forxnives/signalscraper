@@ -45,3 +45,43 @@ body {
       }
 }
 
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, $color-light-green, $color-green);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all .2s;
+
+  &:hover {
+    transform: skewY(0deg) skewX(-10deg);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+
+}
+
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+
+
+  //this not thing selects everything EXCEPT its argument (last child in this case)
+
+
+
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+
+}
