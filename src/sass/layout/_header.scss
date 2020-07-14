@@ -7,7 +7,7 @@
 
     /* clip path can take a slice out of something at the following coordinates: */
     /* polygon takes 6 values, representing three coordinates (x y, x y, x y) */
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 
 
     &__logo-box {

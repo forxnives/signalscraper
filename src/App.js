@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.css';
+
+
+import './sass/e-commerce-icons.css';
+import './sass/basic-icons.css';
+
+
 import 'tachyons';
 import Nav from './Components/Nav/Nav'
 import Active from './Components/Active/Active'
@@ -8,6 +14,9 @@ import { Notifications } from 'react-push-notification';
 import addNotification from 'react-push-notification';
 import emailjs from 'emailjs-com';
 
+import img_man_bench from './img/man_bench.jpg';
+import img_happy_senior from './img/happy_senior.png';
+import img_woman_shopping from './img/woman_shopping.png'
 
 
 class App extends React.Component {
@@ -246,7 +255,7 @@ class App extends React.Component {
             </div>
 
             <div className="section-about-flex-container">
-              <div className="section-about-col ">
+              <div className="section-about-col u-margin-bottom-small">
                 <h3 className="heading-tertiary u-margin-bottom-small">
                   Gain valuable insight into market dynamics
                 </h3>
@@ -264,12 +273,89 @@ class App extends React.Component {
 
               </div>
                 
-              <div className="section-about-col">
-                images
+              <div className="section-about-col u-margin-bottom-small">
+                <div className="composition">
+                  <img src={img_woman_shopping} alt="photo-1" className="composition__photo composition__photo--p1"/>
+                  <img src={img_man_bench} alt="photo-2" className="composition__photo composition__photo--p2"/>
+                  <img src={img_happy_senior} alt="photo-3" className="composition__photo composition__photo--p3"/>
+                </div>
               </div>
             </div>
 
           </section>
+
+          <section className="section-features">
+            <div className="features-flex-container">
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-world"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-paperplane"></i> 
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-ecommerce-graph3"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-world"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+            </div>
+ 
+          </section>
+          <section className="section-prices">
+            <div className="u-center-text u-margin-bottom-big">
+              <h2 className="heading-secondary">
+                  Competitive Pricing
+              </h2>
+            </div>
+            <div className="prices">
+              <div className="prices-col">
+                <div className="features-card">something</div>
+
+              </div>
+              <div className="prices-col">
+                <div className="features-card">something</div>
+
+              </div>
+              <div className="prices-col">
+                <div className="features-card">something</div>
+                
+              </div>
+            </div>
+
+          </section>
+
         </main>
 
 
