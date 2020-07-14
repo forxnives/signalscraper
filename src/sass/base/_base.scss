@@ -1,0 +1,30 @@
+/* Using everything selector to make margin and padding default to zero */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+
+  /* here we use inheritance to set all to inherit from body */
+  box-sizing: inherit;
+}
+
+
+/* here we are declaring the root font size for the whole document using the html selector */
+/* we start with 10px to make it easier on ourselves (easy to do the math) */
+html {
+
+  /* we had 10 px here, but this is bad practice.  instead we set the 62.5% of default (16px) to equal 10px */
+  //note that this isnt in typography, as its more of a global setting
+  font-size: 62.5%;
+}
+
+
+
+body {
+  /* borderbox best practice..put in body and use universal selector to inherit */
+  /* borderbox accounts for borders in calculation of element size; definately use */
+  box-sizing: border-box;
+
+
+}

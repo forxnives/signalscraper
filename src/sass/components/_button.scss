@@ -1,0 +1,127 @@
+.btn {
+    
+
+    /* the :link and :visited refer to the pseudoclass of .btn, reffering to its state (eg. hover) */
+    &:link,
+    &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;  
+    font-size: 1.6rem;
+
+    /* always make inline-block if adding padding to elements */
+    display: inline-block;  
+
+    /* this rounds the button */
+    border-radius: 10rem;
+
+    /* a simpler way to animate; specify what we want to animate (all) and the seconds */
+    
+    transition: all .2s;
+    /* keep in mind that its put on the initial state/pseudoclass! */
+
+
+    /* here we are making a relative position for the absolute in the after pseudoclass to refer to */
+    position: relative;
+
+
+
+
+    }
+
+    &:hover {
+        transform: translateY(-.3rem);
+
+        /* creating a shadow on hover..takes three values, x, y and colour (including opacity) */
+        box-shadow: 0 1rem 2rem rgba($color-black,.2); 
+        
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+            }
+    }
+
+    &:active {
+        transform: translateY(-.1rem);
+        /* decreasing the shadow for onclick  */
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2) 
+    }
+
+
+
+    /* we are going to use the after pseudoclass for the button animation..not double :: */
+   
+    &::after {
+        /* all after pseudoclasses require a content propery, can be empty: */
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* this puts the after pseudoclass behind the button */
+        z-index:-1;
+
+        /* the transition here refers to all changes that are made from this state */
+        transition: all .3s ;
+        
+    }
+
+
+    &--white {
+        background-color:$color-orange;
+        color: $color-dark-green;
+
+        &::after {
+            background-color: $color-orange;
+            
+        }
+
+    }
+
+    &--animated {
+
+        /* here we are using animation short hand and specifying a delay of .5s */
+        animation: moveInBottom 1.8s ease-out .5s;
+
+        /* because of the delay, we have to use animation-fill-mode to set initial state to transparent; */
+        animation-fill-mode: backwards;
+
+    }
+
+}
+
+
+.btn-text {
+    
+
+    /* the :link and :visited refer to the pseudoclass of .btn, reffering to its state (eg. hover) */
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-green;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-green;
+        padding: 3px;
+        transition: all .2s;
+
+    }
+
+    &:hover{
+        background-color: $color-light-green;
+        color: $color-grey-light-1;
+        box-shadow: 0 1rem 2rem rgba($color-black,.15);
+        transform: translateY(-2px);
+
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+        translate: transformY(0px);
+    }
+
+}

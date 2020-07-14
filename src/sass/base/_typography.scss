@@ -1,0 +1,86 @@
+
+body {
+    /* always put font information in the body element */
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: black;
+    padding: 3rem;
+}
+
+
+
+.heading-primary { 
+    color: #08171b;
+    text-transform: uppercase;
+
+    /* this gets rid of animation shakiness! noone knows why.  put in parent element of animation elemtent */
+    backface-visibility: hidden;
+    margin-bottom: 15rem;
+
+
+    &--main{
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 1.5rem;
+        margin-bottom: 3rem;
+      
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        /* animation-delay: 3s; */
+        /* animation-iteration-count: 3; */
+      }
+      
+      &--sub{
+        display: block;
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 1.5rem;
+      
+        /* Note that you can group all the same animation stuff in one property */
+        animation: moveInRight 1s ease-out;
+      }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, $color-light-green, $color-green);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all .2s;
+
+  &:hover {
+    transform: skewY(0deg) skewX(-10deg);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+
+}
+
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+
+
+  //this not thing selects everything EXCEPT its argument (last child in this case)
+
+
+
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+}

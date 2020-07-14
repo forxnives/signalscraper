@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.css';
+
+
+import './sass/e-commerce-icons.css';
+import './sass/basic-icons.css';
+
+
 import 'tachyons';
 import Nav from './Components/Nav/Nav'
 import Active from './Components/Active/Active'
@@ -8,6 +14,9 @@ import { Notifications } from 'react-push-notification';
 import addNotification from 'react-push-notification';
 import emailjs from 'emailjs-com';
 
+import img_man_bench from './img/man_bench.jpg';
+import img_happy_senior from './img/happy_senior.png';
+import img_woman_shopping from './img/woman_shopping.png'
 
 
 class App extends React.Component {
@@ -223,16 +232,142 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
 
         <Notifications />
-        <Nav />
-        <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } 
+        <header className="header">
+          <Nav />
+          <div className="header__text-box">
+            <h1 className='heading-primary'>
+              <span className="heading-primary--main">Illume Signals</span>
+              <span className="heading-primary--sub">Lighting The Path to Financial Freedom</span>
+            </h1>
+            <a href="#" className="btn btn--white btn--animated">Find Out More</a>
+          </div>
+        </header>
+
+        <main>
+          <section className="section-about">
+            <div className="u-center-text u-margin-bottom-big">
+              <h2 className="heading-secondary">
+                  Sentiment-driven analysis
+              </h2>
+            </div>
+
+            <div className="section-about-flex-container">
+              <div className="section-about-col u-margin-bottom-small">
+                <h3 className="heading-tertiary u-margin-bottom-small">
+                  Gain valuable insight into market dynamics
+                </h3>
+                <p className="paragraph">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem doloremque adipisci veritatis soluta ipsum nesciunt assumenda voluptatibus voluptates pariatur eveniet itaque sint perferendis fugiat architecto possimus, magni libero consequatur facilis.
+                </p>
+                <h3 className="heading-tertiary u-margin-bottom-small">
+                  Trade against the herd
+                </h3>
+                <p className="paragraph">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus repellendus sequi consequatur dolorum nam tempore non laboriosam veritatis quod ea, alias magni facilis exercitationem vero voluptatem similique numquam repellat beatae.
+                </p>
+
+                <a href="#" className="btn-text">Learn More &rarr;</a>
+
+              </div>
+                
+              <div className="section-about-col u-margin-bottom-small">
+                <div className="composition">
+                  <img src={img_woman_shopping} alt="photo-1" className="composition__photo composition__photo--p1"/>
+                  <img src={img_man_bench} alt="photo-2" className="composition__photo composition__photo--p2"/>
+                  <img src={img_happy_senior} alt="photo-3" className="composition__photo composition__photo--p3"/>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section className="section-features">
+            <div className="features-flex-container">
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-world"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-paperplane"></i> 
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-ecommerce-graph3"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+              <div className="features">
+                <div className="features-card">
+                  <i className="icon icon-basic-world"></i>   
+                  <h3 className="heading-tertiary">
+                    Explore the World
+                  </h3> 
+                  <p className="section-features-text">
+                  Aperiam modi reprehenderit possimus hic nulla quasi sint commodi id, deleniti obcaecati aspernatur alias beatae ipsam eius quos, excepturi ipsum magni ut!
+                  </p>
+                </div>
+              </div>
+            </div>
+ 
+          </section>
+          <section className="section-prices">
+            <div className="u-center-text u-margin-bottom-big">
+              <h2 className="heading-secondary">
+                  Competitive Pricing
+              </h2>
+            </div>
+            <div className="prices">
+              <div className="prices-col">
+                <div className="features-card">something</div>
+
+              </div>
+              <div className="prices-col">
+                <div className="features-card">something</div>
+
+              </div>
+              <div className="prices-col">
+                <div className="features-card">something</div>
+                
+              </div>
+            </div>
+
+          </section>
+
+        </main>
+
+
+        
+        {/* <Active onLoad={this.updateUser()} object={this.activeObject} date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } 
           direction={ this.state.direction } link={ this.state.link } />
-        <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  />
+        <Table date={ this.state.date } symbol={ this.state.symbol } status={ this.state.status } direction={ this.state.direction } link={ this.state.link }  /> */}
 
 
       </div>
+      
+      
     );
   };
 };

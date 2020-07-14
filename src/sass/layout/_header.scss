@@ -1,0 +1,47 @@
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to top,#24846cc2,#5a99592b), url(../../../src/img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    /* clip path can take a slice out of something at the following coordinates: */
+    /* polygon takes 6 values, representing three coordinates (x y, x y, x y) */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
+
+    &__logo-box {
+        position: absolute;
+        top: 1.7rem;
+        left: 2rem;
+    }
+
+    
+    &__logo {
+        height: 8rem;
+
+        &:hover {
+            animation: logoEnlarge .2s;
+
+            /* this animation property makes it stop on the lat frame instead of restarting */
+            animation-fill-mode: forwards;
+        }
+    }
+
+    
+    &__text-box {
+        position: absolute;
+        /* making position absolute makes the following (top, left) in relation to the parent element */
+        top: 10%;
+        left: 10%;
+        /* we can use transform translate to then transform the item in relation to itself */
+        
+        /* transform: translate(-0%, 10%); */            
+        
+        /* remember that when using text, we can simply do this to center it */
+        /* text-align: center; */
+    }
+
+
+
+}
