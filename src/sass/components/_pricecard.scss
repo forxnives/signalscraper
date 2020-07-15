@@ -1,9 +1,151 @@
 .prices {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    
+
+
+
+    //FUNCTIONALITY
 
     &-col{
 
+        width: 27rem;
+        text-align: center;
+        margin-top: 3rem;
     }
 
+    &-card {
+
+        perspective: 50rem;
+        -moz-perspective: 50rem;
+        position: relative;
+        height: 40rem;
+
+
+        &__side{
+
+            height: 40rem;
+            transition: all .8s ease;
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: 3px;
+            box-shadow: 0 1.5rem 4rem rgba($color: #000000, $alpha: .15);
+            overflow: hidden;
+
+
+            &-front {
+                background-color:white;
+            }
+
+            &-back {
+                transform: rotateY(180deg);
+
+                &-1 {
+                    background-image: linear-gradient(to right bottom, $color-claret, $color-purple-dark);
+                }
+
+                &-2 {
+                    background-image: linear-gradient(to right bottom, $color-tang, $color-ored);
+                }
+                
+                &-3 {
+                    background-image: linear-gradient(to right bottom, $color-turqoise, $color-green);
+                }
+            }
+        }
+
+
+
+        &:hover &__side-front {
+            transform: rotateY(180deg);
+
+        }
+
+        
+        &:hover &__side-back {
+            transform: rotateY(360deg);
+
+        }
+
+    }
+    //FRONT-CARD STYLING
+    &-content-front {
+
+        height: 18rem;
+        background-size: cover;
+        background-blend-mode: color;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        position: relative;
+
+        &-heading {
+            position: absolute;
+            text-align: right;
+            text-transform: uppercase;
+            font-size: 2rem;
+            font-weight: 300;
+            top: 10rem;
+            right: 1rem;
+            color: white;
+            width: 61%;
+            z-index: 0;
+        }
+
+
+        &-heading-span {
+
+            padding: .5rem 1.5rem;
+            
+            -webkit-box-direction-break: clone;
+            box-decoration-break: clone;
+
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, rgba($color-claret, .85), rgba($color-purple-dark, .85));
+            }
+            &-2 {
+                background-image: linear-gradient(to right bottom, rgba($color-tang, .85), rgba($color-ored, .85));
+            }
+            &-3 {
+                background-image: linear-gradient(to right bottom, rgba($color-turqoise, .85), rgba($color-green, .85));
+            }
+        }
+
+        &-1 {
+            background-image: linear-gradient(to right bottom, $color-claret, $color-purple-dark), url(../../img/compass.jpg);
+        }
+        &-2 {
+            background-image:linear-gradient(to right bottom, $color-tang, $color-ored), url(../../img/pen_paper.jpg);
+        }
+        &-3 {
+            background-image: linear-gradient(to right bottom, $color-turqoise, $color-green), url(../../img/money_closeup.jpg);
+        }
+
+
+
+        &-list {
+            list-style: none;
+            width: 75%;
+            margin: 2rem auto;
+
+
+            
+            &-item {
+                text-align: center;
+                font-size: 1.4rem;
+                padding: .6rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid rgba(black, .1);
+                }
+            }           
+        }
+    }
 }
+
+
+
