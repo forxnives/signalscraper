@@ -335,21 +335,105 @@ class App extends React.Component {
           </section>
           <section className="section-prices">
             <div className="u-center-text u-margin-bottom-big">
-              <h2 className="heading-secondary">
+              <h2 className="heading-secondary u-margin-top-big">
                   Competitive Pricing
               </h2>
             </div>
             <div className="prices">
               <div className="prices-col">
-                <div className="features-card">something</div>
+                <div className="prices-card">
+                  
+                  <div className="prices-card__side prices-card__side-front prices-card__side-front-1">
+                    
+                    <div className="prices-content-front prices-content-front-1">
+                      &nbsp;
+                    </div>
+
+                      <h4 className="prices-content-front-heading">
+                        <span className="prices-content-front-heading-span prices-content-front-heading-span-1">
+                          Starter Membership
+                        </span>
+                      </h4>
+
+                      <ul className="prices-content-front-list">
+                        <li className="prices-content-front-list-item">Sentiment Data Access</li>
+                        <li className="prices-content-front-list-item">Email Trading Signals</li>
+                        <li className="prices-content-front-list-item">In-Depth Trade Analysis</li>
+                        <li className="prices-content-front-list-item">Trade Notifications</li>
+
+                      </ul>
+                    
+                  </div>
+
+
+
+                  <div className="prices-card__side prices-card__side-back  prices-card__side-back-1">
+                    BACK
+                  </div>
+
+                </div>
 
               </div>
               <div className="prices-col">
-                <div className="features-card">something</div>
+                <div className="prices-card">
+
+                  <div className="prices-card__side prices-card__side-front prices-card__side-front-2">
+
+                    <div className="prices-content-front prices-content-front-2">
+                      &nbsp;
+                    </div>
+
+                      <h4 className="prices-content-front-heading">
+                        <span className="prices-content-front-heading-span prices-content-front-heading-span-2">
+                          pro Membership
+                        </span>
+                      </h4>
+
+                      <ul className="prices-content-front-list">
+                        <li className="prices-content-front-list-item">Sentiment Data Access</li>
+                        <li className="prices-content-front-list-item">Email Trading Signals</li>
+                        <li className="prices-content-front-list-item">In-Depth Trade Analysis</li>
+                        <li className="prices-content-front-list-item">Trade Notifications</li>
+
+                      </ul>
+
+                  </div>
+                  <div className="prices-card__side prices-card__side-back  prices-card__side-back-2">
+                    BACK
+                  </div>
+
+                </div>
 
               </div>
               <div className="prices-col">
-                <div className="features-card">something</div>
+                <div className="prices-card">
+
+                  <div className="prices-card__side prices-card__side-front prices-card__side-front-3">
+
+                    <div className="prices-content-front prices-content-front-3">
+                      &nbsp;
+
+                    </div>
+
+                      <h4 className="prices-content-front-heading">
+                        <span className="prices-content-front-heading-span prices-content-front-heading-span-3">
+                          Elite Membership
+                        </span>
+                      </h4>
+
+                      <ul className="prices-content-front-list">
+                        <li className="prices-content-front-list-item">Sentiment Data Access</li>
+                        <li className="prices-content-front-list-item">Email Trading Signals</li>
+                        <li className="prices-content-front-list-item">In-Depth Trade Analysis</li>
+                        <li className="prices-content-front-list-item">Trade Notifications</li>
+
+                      </ul>
+                  </div>
+                  <div className="prices-card__side prices-card__side-back  prices-card__side-back-3">
+                    BACK
+                  </div>
+
+                </div>
                 
               </div>
             </div>
